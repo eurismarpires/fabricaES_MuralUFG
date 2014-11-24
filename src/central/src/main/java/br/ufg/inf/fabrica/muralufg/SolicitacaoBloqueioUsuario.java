@@ -52,5 +52,25 @@
 
 package br.ufg.inf.fabrica.muralufg;
 
-public class GrupoDestinatario {
+public class SolicitacaoBloqueioUsuario {
+    
+    public SolicitacaoBloqueioUsuario SolicitacaoBloqueioUsuario(Usuario usuario, String operacao) {
+        return null;
+    }
+    
+    public String executacaoOperacao(){
+        return null;
+    }
+    
+    public boolean validaOperacao(String operacao){
+        return true;
+    }
+    
+    public boolean validaMotivo() {
+        return true;
+    }
+    
+    public void registraMotivo(String motivo) {
+    }
+    
 }
