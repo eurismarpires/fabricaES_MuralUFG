@@ -53,21 +53,20 @@ package br.ufg.inf.fabrica.muralufg;
 
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Usuario implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private long id;
     private String login;
     private String senha;
     private boolean apenasProdutor;
     private boolean administrador;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    private Bloqueio bloqueio;
     private static final long serialVersionUID = -1246669060153084990L;
 
     public Usuario() {
@@ -111,6 +110,14 @@ public class Usuario implements Serializable {
 
     public void setAdministrador(boolean administrador) {
         this.administrador = administrador;
+    }
+
+    public Bloqueio getBloqueio() {
+        return bloqueio;
+    }
+
+    public void setBloqueio(Bloqueio bloqueio) {
+        this.bloqueio = bloqueio;
     }
 
     @Override

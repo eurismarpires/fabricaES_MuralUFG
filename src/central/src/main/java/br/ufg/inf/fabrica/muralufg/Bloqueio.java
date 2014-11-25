@@ -51,13 +51,19 @@
  */
 package br.ufg.inf.fabrica.muralufg;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Bloqueio implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    @Temporal(TemporalType.DATE)
     private Date dataBloqueio;
+    @Temporal(TemporalType.DATE)
     private Date dataDesbloqueio;
     private String motivo;
 

@@ -3,6 +3,7 @@
   <persistence-unit name="br.ufg.inf.fabrica.muralufg_central_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
      <class>br.ufg.inf.fabrica.muralufg.Usuario</class>
+     <class>br.ufg.inf.fabrica.muralufg.Bloqueio</class>
     <properties>
 
 
