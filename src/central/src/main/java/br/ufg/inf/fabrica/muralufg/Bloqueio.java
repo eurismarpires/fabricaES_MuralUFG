@@ -52,75 +52,50 @@
 package br.ufg.inf.fabrica.muralufg;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
-@Entity
-public class Usuario implements Serializable {
+public class Bloqueio implements Serializable {
 
-    @Id
-    @GeneratedValue
-    private long id;
-    private String login;
-    private String senha;
-    private boolean apenasProdutor;
-    private boolean administrador;
+    private Date dataBloqueio;
+    private Date dataDesbloqueio;
+    private String motivo;
 
-    private static final long serialVersionUID = -1246669060153084990L;
+    private static final long serialVersionUID = -5306922867523594681L;
 
-    public Usuario() {
+    public Bloqueio() {
     }
 
-    public long getId() {
-        return id;
+    public Date getDataBloqueio() {
+        return dataBloqueio;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setDataBloqueio(Date dataBloqueio) {
+        this.dataBloqueio = dataBloqueio;
     }
 
-    public String getLogin() {
-        return login;
+    public Date getDataDesbloqueio() {
+        return dataDesbloqueio;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setDataDesbloqueio(Date dataDesbloqueio) {
+        this.dataDesbloqueio = dataDesbloqueio;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getMotivo() {
+        return motivo;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public boolean isApenasProdutor() {
-        return apenasProdutor;
-    }
-
-    public void setApenasProdutor(boolean apenasProdutor) {
-        this.apenasProdutor = apenasProdutor;
-    }
-
-    public boolean isAdministrador() {
-        return administrador;
-    }
-
-    public void setAdministrador(boolean administrador) {
-        this.administrador = administrador;
+    public void setMotivo(String motivo) {
+        this.motivo = motivo;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 17 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 17 * hash + Objects.hashCode(this.login);
-        hash = 17 * hash + Objects.hashCode(this.senha);
-        hash = 17 * hash + (this.apenasProdutor ? 1 : 0);
-        hash = 17 * hash + (this.administrador ? 1 : 0);
+        int hash = 5;
+        hash = 79 * hash + Objects.hashCode(this.dataBloqueio);
+        hash = 79 * hash + Objects.hashCode(this.dataDesbloqueio);
+        hash = 79 * hash + Objects.hashCode(this.motivo);
         return hash;
     }
 
@@ -132,20 +107,14 @@ public class Usuario implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Usuario other = (Usuario) obj;
-        if (this.id != other.id) {
+        final Bloqueio other = (Bloqueio) obj;
+        if (!Objects.equals(this.dataBloqueio, other.dataBloqueio)) {
             return false;
         }
-        if (!Objects.equals(this.login, other.login)) {
+        if (!Objects.equals(this.dataDesbloqueio, other.dataDesbloqueio)) {
             return false;
         }
-        if (!Objects.equals(this.senha, other.senha)) {
-            return false;
-        }
-        if (this.apenasProdutor != other.apenasProdutor) {
-            return false;
-        }
-        if (this.administrador != other.administrador) {
+        if (!Objects.equals(this.motivo, other.motivo)) {
             return false;
         }
         return true;
