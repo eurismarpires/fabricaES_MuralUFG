@@ -57,40 +57,54 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.text.html.parser.Entity;
 import java.util.Collection;
+import java.util.Date;
 
 public class UsuarioDAO {
 
-    private EntityManager getEntityManager(){
+    private EntityManager getEntityManager() {
         EntityManagerFactory factory = null;
         EntityManager entityManager = null;
         try {
             factory = Persistence.createEntityManagerFactory("br.ufg.inf.fabrica.muralufg_central_jar_1.0-SNAPSHOTPU");
             entityManager = factory.createEntityManager();
-        }finally {
-         //   factory.close();
+        } finally {
+            //   factory.close();
         }
         return entityManager;
     }
 
 
-    public boolean bloquearUsuario(Usuario usuario, String operacao){
-        return false;
-    }
-
-    public boolean desbloquearUsuario(Usuario usuario){
-        return false;
-    }
-
-    public boolean validarUsuario(Usuario usuario){
+    public boolean bloquearUsuario(Usuario usuario, String operacao) {
         EntityManager em = getEntityManager();
-        Usuario usuarioRetornado = em.find(Usuario.class,usuario.getId());
-        if(usuarioRetornado == null){
+        em.getTransaction().begin();
+        try {
+            Bloqueio bloqueio = new Bloqueio();
+            bloqueio.setMotivo(operacao);
+            bloqueio.setDataBloqueio(new Date());
+            usuario.setBloqueio(bloqueio);
+            em.merge(usuario);
+            em.getTransaction().commit();
+        }catch (Exception e){
+            em.getTransaction().rollback();
             return false;
         }
         return true;
     }
 
-    public Collection obterUsuarioGrupo(GrupoDestinatario grupoDestinatario){
+    public boolean desbloquearUsuario(Usuario usuario) {
+        return false;
+    }
+
+    public boolean validarUsuario(Usuario usuario) {
+        EntityManager em = getEntityManager();
+        Usuario usuarioRetornado = em.find(Usuario.class, usuario.getId());
+        if (usuarioRetornado == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public Collection obterUsuarioGrupo(GrupoDestinatario grupoDestinatario) {
         return null;
     }
 }
