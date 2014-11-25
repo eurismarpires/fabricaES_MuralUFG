@@ -92,7 +92,21 @@ public class UsuarioDAO {
     }
 
     public boolean desbloquearUsuario(Usuario usuario) {
-        return false;
+        EntityManager em = getEntityManager();
+        Usuario usuarioParaSerDesbloqueado = em.find(Usuario.class, usuario.getId());
+        Bloqueio bloqueio = usuarioParaSerDesbloqueado.getBloqueio();
+
+        em.getTransaction().begin();
+        try {
+            bloqueio.setDataDesbloqueio(new Date());
+            usuarioParaSerDesbloqueado.setBloqueio(bloqueio);
+            em.merge(usuarioParaSerDesbloqueado);
+            em.getTransaction().commit();
+        }catch (Exception e){
+            em.getTransaction().rollback();
+            return false;
+        }
+        return true;
     }
 
     public boolean validarUsuario(Usuario usuario) {

@@ -133,7 +133,25 @@ public class UsuarioDAOTest {
         assertTrue(usuarioBloqueado);
 
     }
+    @Test
+    public void testDesbloquearUsuario(){
+        em.getTransaction().begin();
+        Usuario usuarioPersistido = new Usuario();
+        usuarioPersistido.setLogin("joao");
+        usuarioPersistido.setAdministrador(true);
+        usuarioPersistido.setApenasProdutor(false);
+        usuarioPersistido.setSenha("123");
+        em.persist(usuarioPersistido);
+        em.getTransaction().commit();
+        Usuario usuarioRetornado = em.find(Usuario.class, usuarioPersistido.getId());
 
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        boolean usuarioBloqueado = usuarioDAO.bloquearUsuario(usuarioRetornado,"Bloqueio de teste");
+        assertTrue(usuarioBloqueado);
+
+        boolean usuariodesBloqueado = usuarioDAO.desbloquearUsuario(usuarioRetornado);
+        assertTrue(usuariodesBloqueado);
+    }
     private static EntityManager getEntityManager(){
         EntityManagerFactory factory = null;
         EntityManager entityManager = null;
