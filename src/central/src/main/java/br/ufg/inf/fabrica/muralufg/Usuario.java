@@ -49,23 +49,29 @@
  * do Instituto de Informática (UFG). Consulte <http://fs.inf.ufg.br>
  * para detalhes.
  */
-
 package br.ufg.inf.fabrica.muralufg;
 
+import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Usuario {
+public class Usuario implements Serializable {
+
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private long id;
     private String login;
     private String senha;
     private boolean apenasProdutor;
     private boolean administrador;
+
+    private static final long serialVersionUID = -1246669060153084990L;
+
+    public Usuario() {
+    }
 
     public long getId() {
         return id;
@@ -105,5 +111,43 @@ public class Usuario {
 
     public void setAdministrador(boolean administrador) {
         this.administrador = administrador;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 17 * hash + Objects.hashCode(this.login);
+        hash = 17 * hash + Objects.hashCode(this.senha);
+        hash = 17 * hash + (this.apenasProdutor ? 1 : 0);
+        hash = 17 * hash + (this.administrador ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        if (this.apenasProdutor != other.apenasProdutor) {
+            return false;
+        }
+        if (this.administrador != other.administrador) {
+            return false;
+        }
+        return true;
     }
 }
