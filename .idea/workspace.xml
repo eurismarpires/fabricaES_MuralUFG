@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b707217c-2407-461a-a898-994ef59dc145" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/central/src/main/java/br/ufg/inf/fabrica/muralufg/Bloqueio.java" afterPath="$PROJECT_DIR$/src/central/src/main/java/br/ufg/inf/fabrica/muralufg/Bloqueio.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/central/src/main/java/br/ufg/inf/fabrica/muralufg/Usuario.java" afterPath="$PROJECT_DIR$/src/central/src/main/java/br/ufg/inf/fabrica/muralufg/Usuario.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/central/target/generated-sources/annotations/br/ufg/inf/fabrica/muralufg/Usuario_.java" afterPath="$PROJECT_DIR$/src/central/target/generated-sources/annotations/br/ufg/inf/fabrica/muralufg/Usuario_.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/derby.log" afterPath="$PROJECT_DIR$/derby.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/central/src/main/resources/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/src/central/src/main/resources/META-INF/persistence.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="fabricaES_MuralUFG.iws" />
@@ -800,12 +795,17 @@
       <created>1416828515350</created>
       <updated>1416828515350</updated>
       <workItem from="1416871770913" duration="1503000" />
-      <workItem from="1416873334054" duration="12350000" />
+      <workItem from="1416873334054" duration="12387000" />
     </task>
+    <task id="LOCAL-00001" summary="Anotada a classe de Bloqueio como uma entidade">
+      <created>1416886244447</created>
+      <updated>1416886244447</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13853000" />
+    <option name="totallyTimeSpent" value="13890000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1040" extended-state="0" />
@@ -886,6 +886,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Anotada a classe de Bloqueio como uma entidade" />
+    <option name="LAST_COMMIT_MESSAGE" value="Anotada a classe de Bloqueio como uma entidade" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
