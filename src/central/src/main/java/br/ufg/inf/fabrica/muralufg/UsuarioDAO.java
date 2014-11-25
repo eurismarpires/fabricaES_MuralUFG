@@ -67,14 +67,11 @@ public class UsuarioDAO {
             factory = Persistence.createEntityManagerFactory("br.ufg.inf.fabrica.muralufg_central_jar_1.0-SNAPSHOTPU");
             entityManager = factory.createEntityManager();
         }finally {
-            factory.close();
+         //   factory.close();
         }
         return entityManager;
     }
 
-    public Usuario buscaUsuario(String usuario){
-        return getEntityManager().find(Usuario.class, usuario);
-    }
 
     public boolean bloquearUsuario(Usuario usuario, String operacao){
         return false;
@@ -84,8 +81,13 @@ public class UsuarioDAO {
         return false;
     }
 
-    public boolean validarUsuario(){
-        return false;
+    public boolean validarUsuario(Usuario usuario){
+        EntityManager em = getEntityManager();
+        Usuario usuarioRetornado = em.find(Usuario.class,usuario.getId());
+        if(usuarioRetornado == null){
+            return false;
+        }
+        return true;
     }
 
     public Collection obterUsuarioGrupo(GrupoDestinatario grupoDestinatario){

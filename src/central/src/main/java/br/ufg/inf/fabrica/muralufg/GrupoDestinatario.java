@@ -52,5 +52,10 @@
 
 package br.ufg.inf.fabrica.muralufg;
 
+import javax.persistence.*;
+
+
+@MappedSuperclass
 public class GrupoDestinatario {
+
 }

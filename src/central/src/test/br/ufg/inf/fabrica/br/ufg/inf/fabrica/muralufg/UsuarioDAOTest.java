@@ -52,6 +52,7 @@
 
 package br.ufg.inf.fabrica.br.ufg.inf.fabrica.muralufg;
 
+import br.ufg.inf.fabrica.muralufg.UsuarioDAO;
 import org.junit.*;
 
 import javax.persistence.EntityManager;
@@ -60,12 +61,13 @@ import javax.persistence.Persistence;
 import br.ufg.inf.fabrica.muralufg.Usuario;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class UsuarioDAOTest {
     private EntityManager em;
     @BeforeClass
     public static void setUpClass(){
-        EntityManager em = getEntityManager();
+
 
     }
     @AfterClass
@@ -74,7 +76,7 @@ public class UsuarioDAOTest {
     }
     @Before
     public void setUp(){
-
+        em = getEntityManager();
     }
     @After
     public void tearDown(){
@@ -82,14 +84,37 @@ public class UsuarioDAOTest {
     }
 
     @Test
-    public void testUsuarioDAO(){
+    public void testPersistenciaUsuarioDAO(){
         em.getTransaction().begin();
         Usuario usuarioPersistido = new Usuario();
+        usuarioPersistido.setLogin("joao");
+        usuarioPersistido.setAdministrador(true);
+        usuarioPersistido.setApenasProdutor(false);
+        usuarioPersistido.setSenha("123");
         em.persist(usuarioPersistido);
-        Usuario usuarioRetornado = em.find(Usuario.class,usuarioPersistido);
+        em.getTransaction().commit();
+        System.out.println("id:"+usuarioPersistido.getId());
+        Usuario usuarioRetornado = em.find(Usuario.class,usuarioPersistido.getId());
         assertEquals(usuarioPersistido,usuarioRetornado);
     }
 
+    @Test
+    public void testValidarUsuario(){
+        em.getTransaction().begin();
+        Usuario usuarioPersistido = new Usuario();
+        usuarioPersistido.setLogin("joao");
+        usuarioPersistido.setAdministrador(true);
+        usuarioPersistido.setApenasProdutor(false);
+        usuarioPersistido.setSenha("123");
+        em.persist(usuarioPersistido);
+        em.getTransaction().commit();
+        System.out.println("id:" + usuarioPersistido.getId());
+        Usuario usuarioRetornado = em.find(Usuario.class, usuarioPersistido.getId());
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        boolean usuarioValido = usuarioDAO.validarUsuario(usuarioPersistido);
+        assertTrue(usuarioValido);
+    }
     private static EntityManager getEntityManager(){
         EntityManagerFactory factory = null;
         EntityManager entityManager = null;
@@ -97,7 +122,7 @@ public class UsuarioDAOTest {
             factory = Persistence.createEntityManagerFactory("br.ufg.inf.fabrica.muralufg_central_jar_1.0-SNAPSHOTPU");
             entityManager = factory.createEntityManager();
         }finally {
-            factory.close();
+            //factory.close();
         }
         return entityManager;
     }
