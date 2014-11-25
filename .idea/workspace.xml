@@ -795,17 +795,21 @@
       <created>1416828515350</created>
       <updated>1416828515350</updated>
       <workItem from="1416871770913" duration="1503000" />
-      <workItem from="1416873334054" duration="12387000" />
+      <workItem from="1416873334054" duration="12399000" />
     </task>
     <task id="LOCAL-00001" summary="Anotada a classe de Bloqueio como uma entidade">
       <created>1416886244447</created>
       <updated>1416886244447</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Anotada a classe de Bloqueio como uma entidade">
+      <created>1416886261219</created>
+      <updated>1416886261219</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13890000" />
+    <option name="totallyTimeSpent" value="13902000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1040" extended-state="0" />
